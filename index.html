@@ -7,6 +7,7 @@
   <title>Mentawai travel Premium</title>
  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="booking-modal.css">
 </head>
 
 <body>
@@ -134,9 +135,14 @@
               min: 5 person
             </div>
 
-            <a href="https://wa.me/6281234567890" target="_blank" class="btn full-btn">
-              Booking Sekarang
-            </a>
+            <div class="booking-options">
+              <button class="btn full-btn book-btn" data-package="Open Trip to the jungle" data-price="280">
+                💳 Booking Bank
+              </button>
+              <a href="https://wa.me/6281234567890" target="_blank" class="btn full-btn btn-whatsapp">
+                📱 WhatsApp
+              </a>
+            </div>
 
           </div>
 
@@ -158,9 +164,14 @@
               min: 7 person
             </div>
 
-            <a href="https://wa.me/6281234567890" target="_blank" class="btn full-btn">
-              Booking Sekarang
-            </a>
+            <div class="booking-options">
+              <button class="btn full-btn book-btn" data-package="surfing in mentawais" data-price="250">
+                💳 Booking Bank
+              </button>
+              <a href="https://wa.me/6281234567890" target="_blank" class="btn full-btn btn-whatsapp">
+                📱 WhatsApp
+              </a>
+            </div>
 
           </div>
 
@@ -182,9 +193,14 @@
               min : 5 person
             </div>
 
-            <a href="https://wa.me/6281234567890" target="_blank" class="btn full-btn">
-              Booking Sekarang
-            </a>
+            <div class="booking-options">
+              <button class="btn full-btn book-btn" data-package="Fishing mentawais" data-price="300">
+                💳 Booking Bank
+              </button>
+              <a href="https://wa.me/6281234567890" target="_blank" class="btn full-btn btn-whatsapp">
+                📱 WhatsApp
+              </a>
+            </div>
 
           </div>
 
@@ -262,5 +278,140 @@
 
   </footer>
 
+  <!-- BOOKING MODAL -->
+  <div id="bookingModal" class="booking-modal">
+    <div class="booking-modal-content">
+      <span class="close-modal">&times;</span>
+      
+      <div class="modal-header">
+        <h2>💳 Booking Paket Wisata</h2>
+        <p id="packageName" class="package-display"></p>
+      </div>
+
+      <form id="bookingForm" class="booking-form">
+        <div class="form-group">
+          <label>Paket Pilihan:</label>
+          <input type="text" id="selectedPackage" disabled class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label>Harga per Orang:</label>
+          <div class="price-display">
+            <span>USD</span>
+            <input type="text" id="packagePrice" disabled class="form-input">
+          </div>
+        </div>
+
+        <div class="form-section-title">Data Pribadi</div>
+
+        <div class="form-group">
+          <label for="fullName">Nama Lengkap *</label>
+          <input type="text" id="fullName" class="form-input" placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" class="form-input" placeholder="Masukkan email Anda" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Nomor Telepon *</label>
+          <input type="tel" id="phone" class="form-input" placeholder="Masukkan nomor telepon" required>
+        </div>
+
+        <div class="form-section-title">Detail Pemesanan</div>
+
+        <div class="form-group">
+          <label for="numberOfPeople">Jumlah Peserta *</label>
+          <input type="number" id="numberOfPeople" class="form-input" min="1" value="1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="departureDate">Tanggal Keberangkatan *</label>
+          <input type="date" id="departureDate" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Catatan Tambahan</label>
+          <textarea id="notes" class="form-input" rows="4" placeholder="Tulis catatan atau permintaan khusus..."></textarea>
+        </div>
+
+        <div class="form-section-title">Metode Pembayaran</div>
+
+        <div class="bank-options">
+          <div class="bank-option">
+            <input type="radio" id="bca" name="bank" value="BCA" required>
+            <label for="bca" class="bank-label">
+              <span class="bank-name">BCA</span>
+            </label>
+          </div>
+
+          <div class="bank-option">
+            <input type="radio" id="mandiri" name="bank" value="Mandiri">
+            <label for="mandiri" class="bank-label">
+              <span class="bank-name">Mandiri</span>
+            </label>
+          </div>
+
+          <div class="bank-option">
+            <input type="radio" id="bni" name="bank" value="BNI">
+            <label for="bni" class="bank-label">
+              <span class="bank-name">BNI</span>
+            </label>
+          </div>
+
+          <div class="bank-option">
+            <input type="radio" id="bri" name="bank" value="BRI">
+            <label for="bri" class="bank-label">
+              <span class="bank-name">BRI</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="booking-summary">
+          <div class="summary-row">
+            <span>Subtotal (<span id="summaryPeople">1</span> orang):</span>
+            <span>USD <span id="subtotal">0</span></span>
+          </div>
+          <div class="summary-row">
+            <span>Biaya Admin:</span>
+            <span>USD <span id="adminFee">10</span></span>
+          </div>
+          <div class="summary-row total">
+            <span>Total Pembayaran:</span>
+            <span>USD <span id="totalPrice">0</span></span>
+          </div>
+        </div>
+
+        <div id="bankInfo" class="bank-info hidden">
+          <div class="info-title">📋 Data Rekening Bank</div>
+          <div id="bankDetails" class="bank-details"></div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          ✓ Konfirmasi Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div id="successModal" class="booking-modal">
+    <div class="booking-modal-content success-modal">
+      <div class="success-content">
+        <div class="success-icon">✓</div>
+        <h2>Booking Berhasil!</h2>
+        <p id="successMessage"></p>
+        <div class="success-details">
+          <p><strong>Referensi Booking:</strong> <span id="bookingRef"></span></p>
+          <p>Silakan lakukan transfer ke rekening bank yang tertera di atas.</p>
+          <p class="warning">⚠️ Bookmark atau simpan email konfirmasi untuk referensi Anda.</p>
+        </div>
+        <button class="btn" onclick="location.reload()">Kembali ke Beranda</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="booking-modal.js"></script>
 </body>
 </html>
